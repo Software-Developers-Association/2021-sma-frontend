@@ -6,6 +6,13 @@ import {
 
 // create the component
 function Login() {
+	const usernameRef = React.useRef();
+	const passwordRef = React.useRef();
+
+	React.useEffect(() => {
+		usernameRef.current.value = localStorage.getItem("username");
+	}, []);
+
 	return (
 		<div className="w-screen h-screen bg-background"> {/* screen container */}
 			<div className="w-full h-full flex items-center"> {/* A wrapper to vertically align our child component using flex */}
@@ -17,8 +24,8 @@ function Login() {
 							<h1 className="text-3xl text-on-surface">Log into Bitr</h1>
 						</div>
 						<div className="flex flex-col space-y-5">
-							<input className="border border-primary px-2 py-1 rounded-lg focus:outline-none" type="text" placeholder="Username" />
-							<input className="border border-primary px-2 py-1 rounded-lg focus:outline-none" type="password" placeholder="Password" />
+							<input ref={usernameRef} className="border border-primary px-2 py-1 rounded-lg focus:outline-none" type="text" placeholder="Username" />
+							<input ref={passwordRef} className="border border-primary px-2 py-1 rounded-lg focus:outline-none" type="password" placeholder="Password" />
 						</div>
 						<div className="flex space-x-3">
 							<Link to="/sign-up" className="focus:outline-none w-full px-2 py-1 text-center text-sm rounded-full border border-primary text-primary">
